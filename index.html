@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeliveryApp - Simulador de Pedidos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header class="encabezado">
+    <h1 class="titulo-app">
+      <span class="icono-app" aria-hidden="true">🛵</span>
+      DeliveryApp
+    </h1>
+  </header>
+
+  <!-- Filtro de categorías -->
+  <section class="filtros-categoria" aria-label="Filtrar platos por categoría">
+    <button type="button" class="boton-filtro activo" data-categoria="todos">Todos</button>
+    <button type="button" class="boton-filtro" data-categoria="Entradas">Entradas</button>
+    <button type="button" class="boton-filtro" data-categoria="Principales">Principales</button>
+    <button type="button" class="boton-filtro" data-categoria="Postres">Postres</button>
+    <button type="button" class="boton-filtro" data-categoria="Bebidas">Bebidas</button>
+  </section>
+
+  <!-- Contenido principal -->
+  <main class="contenido-principal">
+
+    <!-- Menú de platos -->
+    <section class="seccion-menu">
+      <h2>Nuestro Menú</h2>
+      <div id="menu-container" class="menu-container">
+        <!-- Acá se inyectan por JavaScript las tarjetas de platos (class="tarjeta-plato") -->
+      </div>
+    </section>
+
+    <!-- Carrito de compras -->
+    <aside id="carrito-container" class="carrito-container">
+      <h2>Tu Carrito</h2>
+
+      <ul id="carrito-lista" class="carrito-lista">
+        <!-- Acá se inyectan por JavaScript los ítems del carrito (class="item-carrito") -->
+      </ul>
+
+      <p id="carrito-mensaje-vacio" class="carrito-mensaje-vacio">
+        Tu carrito está vacío
+      </p>
+
+      <!-- Datos de entrega para el checkout -->
+      <form id="form-datos-cliente" class="form-datos-cliente">
+        <h3 class="form-datos-cliente-titulo">Datos de entrega</h3>
+
+        <div class="campo-formulario">
+          <label for="input-nombre">Nombre completo</label>
+          <input type="text" id="input-nombre" name="nombre" placeholder="Ej: Juan Pérez">
+        </div>
+
+        <div class="campo-formulario">
+          <label for="input-direccion">Dirección</label>
+          <input type="text" id="input-direccion" name="direccion" placeholder="Ej: Av. Siempreviva 742">
+        </div>
+
+        <div class="campo-formulario">
+          <label for="input-telefono">Teléfono</label>
+          <input type="tel" id="input-telefono" name="telefono" placeholder="Ej: 11 2345 6789">
+        </div>
+
+        <div class="campo-formulario">
+          <label for="select-metodo-pago">Método de pago</label>
+          <select id="select-metodo-pago" name="metodoPago">
+            <option value="">Seleccioná una opción</option>
+            <option value="Efectivo">Efectivo</option>
+            <option value="Tarjeta">Tarjeta</option>
+            <option value="Mercado Pago">Mercado Pago</option>
+          </select>
+        </div>
+      </form>
+
+      <div class="carrito-resumen">
+        <p class="carrito-total">
+          Total: <span id="carrito-total-monto">$0</span>
+        </p>
+        <button type="button" id="btn-confirmar-pedido" class="boton-confirmar-pedido">
+          Confirmar pedido
+        </button>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Seguimiento del pedido (oculto hasta confirmar un pedido) -->
+  <section id="tracking-container" class="tracking-container" hidden>
+    <h2>Seguimiento del pedido</h2>
+    <ul class="tracking-lista">
+      <li class="tracking-paso" data-estado="recibido">Recibido</li>
+      <li class="tracking-paso" data-estado="preparacion">En preparación</li>
+      <li class="tracking-paso" data-estado="camino">En camino</li>
+      <li class="tracking-paso" data-estado="entregado">Entregado</li>
+    </ul>
+    <button type="button" id="btn-nuevo-pedido" class="boton-nuevo-pedido" hidden>
+      Hacer otro pedido
+    </button>
+  </section>
+
+  <!-- Librería externa de alertas y script propio -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="script.js"></script>
+</body>
+</html>

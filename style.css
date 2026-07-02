@@ -1,0 +1,455 @@
+/* ===== Variables ===== */
+:root {
+  --color-fondo: #f7f7f5;
+  --color-superficie: #ffffff;
+  --color-texto: #2d2d2d;
+  --color-texto-suave: #6f6f6f;
+  --color-acento: #ff6b35;
+  --color-acento-hover: #e2551f;
+  --color-borde: #e6e6e3;
+
+  --radio-borde: 14px;
+  --sombra-suave: 0 2px 10px rgba(0, 0, 0, 0.06);
+  --sombra-hover: 0 8px 20px rgba(0, 0, 0, 0.1);
+  --transicion: 0.2s ease;
+}
+
+/* ===== Reset básico ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.5;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+/* ===== Header ===== */
+.encabezado {
+  background-color: var(--color-superficie);
+  border-bottom: 1px solid var(--color-borde);
+  padding: 1.2rem 2rem;
+}
+
+.titulo-app {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.icono-app {
+  font-size: 1.8rem;
+}
+
+/* ===== Filtro de categorías ===== */
+.filtros-categoria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  padding: 1.2rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.boton-filtro {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 999px;
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  font-size: 0.9rem;
+  transition: background-color var(--transicion), color var(--transicion);
+}
+
+.boton-filtro:hover {
+  background-color: var(--color-fondo);
+}
+
+.boton-filtro.activo {
+  background-color: var(--color-acento);
+  border-color: var(--color-acento);
+  color: var(--color-superficie);
+}
+
+/* ===== Layout principal ===== */
+.contenido-principal {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 2rem;
+}
+
+.seccion-menu {
+  flex: 1;
+  min-width: 0;
+}
+
+.seccion-menu h2 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+/* ===== Grid de platos ===== */
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ===== Tarjeta de plato ===== */
+.tarjeta-plato {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-superficie);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-suave);
+  overflow: hidden;
+  transition: transform var(--transicion), box-shadow var(--transicion);
+}
+
+.tarjeta-plato:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-hover);
+}
+
+.tarjeta-plato-imagen {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.tarjeta-plato-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem;
+  flex: 1;
+}
+
+.tarjeta-plato-categoria {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-texto-suave);
+}
+
+.tarjeta-plato-nombre {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.tarjeta-plato-descripcion {
+  font-size: 0.85rem;
+  color: var(--color-texto-suave);
+  flex: 1;
+}
+
+.tarjeta-plato-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.tarjeta-plato-precio {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-acento);
+}
+
+/* ===== Carrito ===== */
+.carrito-container {
+  flex: 0 0 320px;
+  width: 320px;
+  background-color: var(--color-superficie);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-suave);
+  padding: 1.25rem;
+  position: sticky;
+  top: 1.25rem;
+  max-height: calc(100vh - 2.5rem);
+  overflow-y: auto;
+}
+
+.carrito-container h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.carrito-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.carrito-mensaje-vacio {
+  text-align: center;
+  color: var(--color-texto-suave);
+  font-size: 0.9rem;
+  padding: 1.5rem 0;
+}
+
+.item-carrito {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.item-carrito-nombre {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.item-carrito-cantidad {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.boton-restar,
+.boton-sumar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--color-borde);
+  background-color: var(--color-fondo);
+  font-weight: 700;
+  transition: background-color var(--transicion), color var(--transicion);
+}
+
+.boton-restar:hover,
+.boton-sumar:hover {
+  background-color: var(--color-acento);
+  color: var(--color-superficie);
+}
+
+.cantidad-numero {
+  min-width: 18px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.item-carrito-subtotal {
+  min-width: 60px;
+  text-align: right;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.boton-eliminar {
+  color: var(--color-texto-suave);
+  font-size: 1rem;
+  line-height: 1;
+  transition: color var(--transicion);
+}
+
+.boton-eliminar:hover {
+  color: var(--color-acento-hover);
+}
+
+.carrito-resumen {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-borde);
+}
+
+.carrito-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.9rem;
+}
+
+#carrito-total-monto {
+  color: var(--color-acento);
+  font-size: 1.15rem;
+}
+
+/* ===== Formulario de datos ===== */
+.form-datos-cliente {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-borde);
+}
+
+.form-datos-cliente-titulo {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.campo-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.campo-formulario label {
+  font-size: 0.8rem;
+  color: var(--color-texto-suave);
+}
+
+.campo-formulario input,
+.campo-formulario select {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.campo-formulario input:focus,
+.campo-formulario select:focus {
+  outline: 2px solid var(--color-acento);
+  outline-offset: 1px;
+}
+
+/* ===== Botones principales ===== */
+.boton-agregar,
+.boton-confirmar-pedido {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background-color: var(--color-acento);
+  color: var(--color-superficie);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color var(--transicion);
+}
+
+.boton-agregar:hover,
+.boton-confirmar-pedido:hover {
+  background-color: var(--color-acento-hover);
+}
+
+/* ===== Tracking del pedido ===== */
+.tracking-container {
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  padding: 1.5rem 2rem;
+  background-color: var(--color-superficie);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-suave);
+}
+
+.tracking-container h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.tracking-lista {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.tracking-paso {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-texto-suave);
+  text-align: center;
+}
+
+.tracking-paso::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--color-borde);
+}
+
+.tracking-paso.activo {
+  color: var(--color-texto);
+  font-weight: 600;
+}
+
+.tracking-paso.activo::before {
+  background-color: var(--color-acento);
+}
+
+.boton-nuevo-pedido {
+  display: block;
+  margin: 1.5rem auto 0;
+  padding: 0.6rem 1.5rem;
+  border-radius: 999px;
+  background-color: var(--color-acento);
+  color: var(--color-superficie);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color var(--transicion);
+}
+
+.boton-nuevo-pedido:hover {
+  background-color: var(--color-acento-hover);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .contenido-principal {
+    flex-direction: column;
+  }
+
+  .carrito-container {
+    width: 100%;
+    flex: 1 1 auto;
+    position: static;
+    max-height: none;
+  }
+
+  .encabezado,
+  .filtros-categoria {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+
+  .tracking-lista {
+    flex-wrap: wrap;
+  }
+}

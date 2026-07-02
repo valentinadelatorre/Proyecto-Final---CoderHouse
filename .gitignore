@@ -1,0 +1,9 @@
+# Sistema operativo
+.DS_Store
+
+# Editores
+.vscode/
+*.swp
+
+# Logs
+*.log
