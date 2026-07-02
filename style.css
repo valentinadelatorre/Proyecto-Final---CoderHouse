@@ -74,6 +74,7 @@ h1, h2, h3, p {
 .filtros-categoria {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.7rem;
   padding: 1.2rem 2rem;
   max-width: 1200px;
@@ -83,7 +84,7 @@ h1, h2, h3, p {
 .boton-filtro {
   padding: 0.5rem 1.2rem;
   border: 1px solid var(--color-borde);
-  border-radius: 999px;
+  border-radius: 0;
   background-color: var(--color-superficie);
   color: var(--color-texto);
   font-size: 0.9rem;
@@ -180,19 +181,21 @@ h1, h2, h3, p {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.75rem;
   margin-top: 0.5rem;
 }
 
 .tarjeta-plato-precio {
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  color: var(--color-acento);
+  color: var(--color-texto);
 }
 
 /* ===== Carrito ===== */
 .carrito-container {
   flex: 0 0 320px;
   width: 320px;
+  margin-top: 2.95rem;
   background-color: var(--color-superficie);
   border-radius: var(--radio-borde);
   box-shadow: var(--sombra-suave);
@@ -298,7 +301,7 @@ h1, h2, h3, p {
 }
 
 #carrito-total-monto {
-  color: var(--color-acento);
+  color: var(--color-texto);
   font-size: 1.15rem;
 }
 
@@ -348,16 +351,25 @@ h1, h2, h3, p {
 /* ===== Botones principales ===== */
 .boton-agregar,
 .boton-confirmar-pedido {
-  display: block;
-  width: 100%;
-  padding: 0.6rem 1rem;
-  border-radius: 999px;
   background-color: var(--color-acento);
   color: var(--color-superficie);
-  font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
   transition: background-color var(--transicion);
+}
+
+.boton-agregar {
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  font-size: 0.85rem;
+}
+
+.boton-confirmar-pedido {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: 0;
+  font-size: 0.9rem;
 }
 
 .boton-agregar:hover,
@@ -439,6 +451,7 @@ h1, h2, h3, p {
   .carrito-container {
     width: 100%;
     flex: 1 1 auto;
+    margin-top: 0;
     position: static;
     max-height: none;
   }
