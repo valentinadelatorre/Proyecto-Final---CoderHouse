@@ -1,0 +1,118 @@
+/* ===== Estilos propios de la página "Restaurantes" ===== */
+
+.seccion-restaurantes {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 2rem;
+}
+
+.seccion-restaurantes h2 {
+  margin-bottom: 1.25rem;
+  font-size: 1.3rem;
+}
+
+.restaurantes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.restaurante-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-superficie);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-suave);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--transicion), box-shadow var(--transicion);
+}
+
+.restaurante-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-hover);
+}
+
+.restaurante-card-imagen {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.restaurante-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem;
+  flex: 1;
+}
+
+.restaurante-card-nombre {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.restaurante-card-descripcion {
+  font-size: 0.85rem;
+  color: var(--color-texto-suave);
+  flex: 1;
+}
+
+.restaurante-card-categorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.restaurante-card-tag {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--color-texto-suave);
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  padding: 0.2rem 0.5rem;
+}
+
+/* ===== Detalle del restaurante seleccionado ===== */
+.restaurante-detalle {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.boton-volver {
+  display: inline-block;
+  margin: 1.5rem 2rem 0;
+  font-size: 0.85rem;
+  color: var(--color-texto-suave);
+  transition: color var(--transicion);
+}
+
+.boton-volver:hover {
+  color: var(--color-acento);
+}
+
+.restaurante-detalle-nombre {
+  padding: 0.75rem 2rem 0;
+  font-size: 1.4rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .seccion-restaurantes {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+
+  .boton-volver,
+  .restaurante-detalle-nombre {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .restaurantes-grid {
+    grid-template-columns: 1fr;
+  }
+}

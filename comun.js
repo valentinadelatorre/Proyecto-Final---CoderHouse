@@ -1,15 +1,11 @@
-// script.js
-// Simulador de Pedidos Delivery - Carga y render del menú
-
-// Array en memoria con los platos traídos del JSON
-let platos = [];
+// comun.js
+// Funciones compartidas entre las páginas "index.html" (Todo) y "restaurantes.html":
+// carrito de compras, checkout, historial y seguimiento del pedido.
 
 // Array en memoria con los ítems agregados al pedido
 let carrito = [];
 
-// Referencias a elementos del DOM que se usan en este archivo
-const menuContainer = document.getElementById('menu-container');
-const botonesFiltro = document.querySelectorAll('.boton-filtro');
+// Referencias a elementos del DOM del carrito y el checkout
 const carritoContainer = document.getElementById('carrito-container');
 const carritoLista = document.getElementById('carrito-lista');
 const carritoMensajeVacio = document.getElementById('carrito-mensaje-vacio');
@@ -28,36 +24,18 @@ const inputDireccion = document.getElementById('input-direccion');
 const inputTelefono = document.getElementById('input-telefono');
 const selectMetodoPago = document.getElementById('select-metodo-pago');
 
-// Trae los platos desde data/menu.json y los guarda en memoria
-async function cargarMenu() {
-  try {
-    const respuesta = await fetch('data/menu.json');
-
-    if (!respuesta.ok) {
-      throw new Error('No se pudo obtener el menú');
-    }
-
-    platos = await respuesta.json();
-    renderizarMenu(platos);
-  } catch (error) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Ups... algo salió mal',
-      text: 'No pudimos cargar el menú. Probá recargar la página.'
-    });
-  }
-}
-
 // Da formato de precio en pesos a un número (ej: 3500 -> $3.500)
 function formatearPrecio(precio) {
   return `$${precio.toLocaleString('es-AR')}`;
 }
 
-// Renderiza una lista de platos como tarjetas dentro de #menu-container
-function renderizarMenu(listaPlatos) {
-  menuContainer.innerHTML = listaPlatos
+// Renderiza una lista de platos como tarjetas dentro del contenedor indicado.
+// "mostrarBoton" (true por defecto) permite ocultar "Agregar al pedido" en
+// páginas donde el plato todavía no está conectado a un restaurante (ej: "Todo").
+function renderizarMenu(listaPlatos, contenedor, mostrarBoton = true) {
+  contenedor.innerHTML = listaPlatos
     .map((plato) => `
-      <article class="tarjeta-plato">
+      <article class="tarjeta-plato" data-id="${plato.id}">
         <img class="tarjeta-plato-imagen" src="${plato.imagen}" alt="${plato.nombre}">
         <div class="tarjeta-plato-info">
           <span class="tarjeta-plato-categoria">${plato.categoria}</span>
@@ -65,9 +43,11 @@ function renderizarMenu(listaPlatos) {
           <p class="tarjeta-plato-descripcion">${plato.descripcion}</p>
           <div class="tarjeta-plato-footer">
             <span class="tarjeta-plato-precio">${formatearPrecio(plato.precio)}</span>
-            <button type="button" class="boton-agregar" data-id="${plato.id}">
-              Agregar al pedido
-            </button>
+            ${mostrarBoton ? `
+              <button type="button" class="boton-agregar" data-id="${plato.id}">
+                Agregar al pedido
+              </button>
+            ` : ''}
           </div>
         </div>
       </article>
@@ -75,53 +55,32 @@ function renderizarMenu(listaPlatos) {
     .join('');
 }
 
-// Filtra el array de platos por categoría y vuelve a renderizar
-function filtrarPorCategoria(categoria) {
-  if (categoria === 'todos') {
-    renderizarMenu(platos);
-    return;
-  }
-
-  const platosFiltrados = platos.filter((plato) => plato.categoria === categoria);
-  renderizarMenu(platosFiltrados);
-}
-
-// Activa el listener de click en cada botón de filtro
-function configurarFiltros() {
-  botonesFiltro.forEach((boton) => {
-    boton.addEventListener('click', () => {
-      botonesFiltro.forEach((b) => b.classList.remove('activo'));
-      boton.classList.add('activo');
-      filtrarPorCategoria(boton.dataset.categoria);
-    });
-  });
-}
-
-// Busca el plato por id y lo agrega al carrito (o suma cantidad si ya estaba)
-function agregarAlCarrito(idPlato) {
-  const plato = platos.find((p) => p.id === idPlato);
-  if (!plato) return;
-
-  const itemExistente = carrito.find((item) => item.id === idPlato);
+// Busca el ítem por plato + restaurante y lo agrega al carrito (o suma cantidad si ya estaba)
+function agregarAlCarrito(plato, nombreRestaurante) {
+  const itemExistente = carrito.find(
+    (item) => item.id === plato.id && item.restaurante === nombreRestaurante
+  );
 
   if (itemExistente) {
     itemExistente.cantidad += 1;
   } else {
-    carrito.push({ ...plato, cantidad: 1 });
+    carrito.push({ ...plato, cantidad: 1, restaurante: nombreRestaurante });
   }
 
   renderizarCarrito();
 }
 
 // Suma o resta unidades a un ítem del carrito; si llega a 0, lo elimina
-function cambiarCantidad(idPlato, delta) {
-  const item = carrito.find((item) => item.id === idPlato);
+function cambiarCantidad(idPlato, nombreRestaurante, delta) {
+  const item = carrito.find(
+    (item) => item.id === idPlato && item.restaurante === nombreRestaurante
+  );
   if (!item) return;
 
   item.cantidad += delta;
 
   if (item.cantidad <= 0) {
-    eliminarDelCarrito(idPlato);
+    eliminarDelCarrito(idPlato, nombreRestaurante);
     return;
   }
 
@@ -129,8 +88,10 @@ function cambiarCantidad(idPlato, delta) {
 }
 
 // Saca por completo un ítem del carrito usando filter
-function eliminarDelCarrito(idPlato) {
-  carrito = carrito.filter((item) => item.id !== idPlato);
+function eliminarDelCarrito(idPlato, nombreRestaurante) {
+  carrito = carrito.filter(
+    (item) => !(item.id === idPlato && item.restaurante === nombreRestaurante)
+  );
   renderizarCarrito();
 }
 
@@ -147,29 +108,22 @@ function renderizarCarrito() {
   carritoLista.innerHTML = carrito
     .map((item) => `
       <li class="item-carrito">
-        <span class="item-carrito-nombre">${item.nombre}</span>
+        <div class="item-carrito-nombre">
+          ${item.nombre}
+          <span class="item-carrito-restaurante">${item.restaurante}</span>
+        </div>
         <div class="item-carrito-cantidad">
-          <button type="button" class="boton-restar" data-accion="restar" data-id="${item.id}">-</button>
+          <button type="button" class="boton-restar" data-accion="restar" data-id="${item.id}" data-restaurante="${item.restaurante}">-</button>
           <span class="cantidad-numero">${item.cantidad}</span>
-          <button type="button" class="boton-sumar" data-accion="sumar" data-id="${item.id}">+</button>
+          <button type="button" class="boton-sumar" data-accion="sumar" data-id="${item.id}" data-restaurante="${item.restaurante}">+</button>
         </div>
         <span class="item-carrito-subtotal">${formatearPrecio(item.precio * item.cantidad)}</span>
-        <button type="button" class="boton-eliminar" data-accion="eliminar" data-id="${item.id}">✕</button>
+        <button type="button" class="boton-eliminar" data-accion="eliminar" data-id="${item.id}" data-restaurante="${item.restaurante}">✕</button>
       </li>
     `)
     .join('');
 
   carritoTotalMonto.textContent = formatearPrecio(calcularTotal());
-}
-
-// Delegación de eventos: un solo listener para "Agregar al pedido" en el menú
-function configurarMenu() {
-  menuContainer.addEventListener('click', (evento) => {
-    const boton = evento.target.closest('.boton-agregar');
-    if (!boton) return;
-
-    agregarAlCarrito(Number(boton.dataset.id));
-  });
 }
 
 // Delegación de eventos: un solo listener para +/- y eliminar en el carrito
@@ -179,11 +133,12 @@ function configurarCarrito() {
     if (!boton) return;
 
     const idPlato = Number(boton.dataset.id);
+    const nombreRestaurante = boton.dataset.restaurante;
     const accion = boton.dataset.accion;
 
-    if (accion === 'sumar') cambiarCantidad(idPlato, 1);
-    if (accion === 'restar') cambiarCantidad(idPlato, -1);
-    if (accion === 'eliminar') eliminarDelCarrito(idPlato);
+    if (accion === 'sumar') cambiarCantidad(idPlato, nombreRestaurante, 1);
+    if (accion === 'restar') cambiarCantidad(idPlato, nombreRestaurante, -1);
+    if (accion === 'eliminar') eliminarDelCarrito(idPlato, nombreRestaurante);
   });
 }
 
@@ -209,6 +164,15 @@ function obtenerCamposFaltantes(datosCliente) {
   return faltantes;
 }
 
+// Agrega un pedido ya confirmado al historial guardado en localStorage
+function guardarPedidoEnHistorial(pedido) {
+  const historialGuardado = localStorage.getItem('historialPedidos');
+  const historial = historialGuardado ? JSON.parse(historialGuardado) : [];
+
+  historial.unshift(pedido);
+  localStorage.setItem('historialPedidos', JSON.stringify(historial));
+}
+
 // Valida el carrito y el formulario; si está todo bien, pide confirmación
 function confirmarPedido() {
   if (carrito.length === 0) {
@@ -232,12 +196,14 @@ function confirmarPedido() {
     return;
   }
 
-  const cantidadItems = carrito.reduce((acumulado, item) => acumulado + item.cantidad, 0);
+  const detalleItems = carrito
+    .map((item) => `${item.cantidad}x ${item.nombre} (${item.restaurante})`)
+    .join('<br>');
 
   Swal.fire({
     icon: 'question',
     title: 'Confirmar pedido',
-    html: `Vas a pedir <strong>${cantidadItems}</strong> ítem(s) por un total de <strong>${formatearPrecio(calcularTotal())}</strong>.`,
+    html: `${detalleItems}<br><br>Total: <strong>${formatearPrecio(calcularTotal())}</strong>`,
     showCancelButton: true,
     confirmButtonText: 'Confirmar',
     cancelButtonText: 'Cancelar'
@@ -248,8 +214,22 @@ function confirmarPedido() {
   });
 }
 
-// Vacía el carrito, oculta menú y carrito, y muestra el tracking
+// Guarda el pedido en el historial, vacía el carrito y muestra el tracking
 function finalizarPedido() {
+  const numeroPedido = generarNumeroPedido();
+
+  guardarPedidoEnHistorial({
+    numero: numeroPedido,
+    fecha: new Date().toLocaleString('es-AR'),
+    items: carrito.map((item) => ({
+      nombre: item.nombre,
+      cantidad: item.cantidad,
+      precio: item.precio,
+      restaurante: item.restaurante
+    })),
+    total: calcularTotal()
+  });
+
   carrito = [];
   renderizarCarrito();
   formDatosCliente.reset();
@@ -259,7 +239,7 @@ function finalizarPedido() {
   trackingContainer.hidden = false;
   botonNuevoPedido.hidden = true;
 
-  iniciarTracking();
+  iniciarTracking(numeroPedido);
 }
 
 // Genera un número de pedido aleatorio de 4 dígitos (ej: 4821)
@@ -273,7 +253,7 @@ function reiniciarPasosTracking() {
 }
 
 // Activa el paso indicado y, con setTimeout, encadena el siguiente paso
-function avanzarTracking(indice) {
+function avanzarTracking(indice, numeroPedido) {
   if (indice >= pasosTracking.length) return;
 
   pasosTracking[indice].classList.add('activo');
@@ -281,23 +261,21 @@ function avanzarTracking(indice) {
   const esUltimoPaso = indice === pasosTracking.length - 1;
 
   if (esUltimoPaso) {
-    setTimeout(mostrarPedidoEntregado, 2000);
+    setTimeout(() => mostrarPedidoEntregado(numeroPedido), 2000);
     return;
   }
 
-  setTimeout(() => avanzarTracking(indice + 1), 2500);
+  setTimeout(() => avanzarTracking(indice + 1, numeroPedido), 2500);
 }
 
 // Arranca la simulación de estados del pedido desde el primer paso
-function iniciarTracking() {
+function iniciarTracking(numeroPedido) {
   reiniciarPasosTracking();
-  avanzarTracking(0);
+  avanzarTracking(0, numeroPedido);
 }
 
 // Muestra el SweetAlert final de éxito y habilita "Hacer otro pedido"
-function mostrarPedidoEntregado() {
-  const numeroPedido = generarNumeroPedido();
-
+function mostrarPedidoEntregado(numeroPedido) {
   Swal.fire({
     icon: 'success',
     title: '¡Pedido entregado!',
@@ -326,14 +304,3 @@ function configurarCheckout() {
 function configurarTracking() {
   botonNuevoPedido.addEventListener('click', reiniciarPedido);
 }
-
-// Punto de entrada: se ejecuta cuando el HTML terminó de cargar
-document.addEventListener('DOMContentLoaded', () => {
-  cargarMenu();
-  configurarFiltros();
-  configurarMenu();
-  configurarCarrito();
-  configurarCheckout();
-  configurarTracking();
-  renderizarCarrito();
-});

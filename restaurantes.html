@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurantes - DeliveryApp</title>
+  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="restaurantes.css?v=3">
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header class="encabezado">
+    <nav class="nav-principal">
+      <a href="index.html"><img src="public/logo/logo.png" alt="DeliveryApp" class="logo-app"></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Todo</a></li>
+        <li><a href="restaurantes.html" class="nav-link activo">Restaurantes</a></li>
+        <li><a href="historial.html" class="nav-link">Historial de Pedidos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Listado de restaurantes -->
+  <section id="seccion-restaurantes" class="seccion-restaurantes">
+    <h2>Restaurantes</h2>
+    <div id="restaurantes-grid" class="restaurantes-grid">
+      <!-- Acá se inyectan por JavaScript las tarjetas de restaurantes (class="restaurante-card") -->
+    </div>
+  </section>
+
+  <!-- Menú del restaurante seleccionado (oculto hasta elegir un restaurante) -->
+  <section id="seccion-restaurante-detalle" class="restaurante-detalle" hidden>
+    <button type="button" id="btn-volver-restaurantes" class="boton-volver">← Volver a restaurantes</button>
+    <h2 id="restaurante-detalle-nombre" class="restaurante-detalle-nombre"></h2>
+
+    <section id="filtros-categoria-restaurante" class="filtros-categoria" aria-label="Filtrar platos por categoría">
+      <!-- Acá se inyectan por JavaScript los botones de categoría de este restaurante -->
+    </section>
+
+    <main class="contenido-principal">
+      <section class="seccion-menu">
+        <div id="menu-container" class="menu-container">
+          <!-- Acá se inyectan por JavaScript las tarjetas de platos (class="tarjeta-plato") -->
+        </div>
+      </section>
+
+      <!-- Carrito de compras -->
+      <aside id="carrito-container" class="carrito-container">
+        <h2>Tu Carrito</h2>
+
+        <ul id="carrito-lista" class="carrito-lista">
+          <!-- Acá se inyectan por JavaScript los ítems del carrito (class="item-carrito") -->
+        </ul>
+
+        <p id="carrito-mensaje-vacio" class="carrito-mensaje-vacio">
+          Tu carrito está vacío
+        </p>
+
+        <!-- Datos de entrega para el checkout -->
+        <form id="form-datos-cliente" class="form-datos-cliente">
+          <h3 class="form-datos-cliente-titulo">Datos de entrega</h3>
+
+          <div class="campo-formulario">
+            <label for="input-nombre">Nombre completo</label>
+            <input type="text" id="input-nombre" name="nombre" placeholder="Ej: Juan Pérez">
+          </div>
+
+          <div class="campo-formulario">
+            <label for="input-direccion">Dirección</label>
+            <input type="text" id="input-direccion" name="direccion" placeholder="Ej: Av. Siempreviva 742">
+          </div>
+
+          <div class="campo-formulario">
+            <label for="input-telefono">Teléfono</label>
+            <input type="tel" id="input-telefono" name="telefono" placeholder="Ej: 11 2345 6789">
+          </div>
+
+          <div class="campo-formulario">
+            <label for="select-metodo-pago">Método de pago</label>
+            <select id="select-metodo-pago" name="metodoPago">
+              <option value="">Seleccioná una opción</option>
+              <option value="Efectivo">Efectivo</option>
+              <option value="Tarjeta">Tarjeta</option>
+              <option value="Mercado Pago">Mercado Pago</option>
+            </select>
+          </div>
+        </form>
+
+        <div class="carrito-resumen">
+          <p class="carrito-total">
+            Total: <span id="carrito-total-monto">$0</span>
+          </p>
+          <button type="button" id="btn-confirmar-pedido" class="boton-confirmar-pedido">
+            Confirmar pedido
+          </button>
+        </div>
+      </aside>
+    </main>
+  </section>
+
+  <!-- Seguimiento del pedido (oculto hasta confirmar un pedido) -->
+  <section id="tracking-container" class="tracking-container" hidden>
+    <h2>Seguimiento del pedido</h2>
+    <ul class="tracking-lista">
+      <li class="tracking-paso" data-estado="recibido">Recibido</li>
+      <li class="tracking-paso" data-estado="preparacion">En preparación</li>
+      <li class="tracking-paso" data-estado="camino">En camino</li>
+      <li class="tracking-paso" data-estado="entregado">Entregado</li>
+    </ul>
+    <button type="button" id="btn-nuevo-pedido" class="boton-nuevo-pedido" hidden>
+      Hacer otro pedido
+    </button>
+  </section>
+
+  <!-- Librería externa de alertas y scripts propios -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="comun.js"></script>
+  <script src="restaurantes.js"></script>
+</body>
+</html>

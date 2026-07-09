@@ -47,6 +47,11 @@ img {
   display: block;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 h1, h2, h3, p {
   margin: 0;
 }
@@ -65,6 +70,33 @@ h1, h2, h3, p {
   display: flex;
   align-items: center;
   height: 100%;
+}
+
+.nav-links {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  padding-bottom: 0.2rem;
+  border-bottom: 2px solid transparent;
+  color: var(--color-texto);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color var(--transicion), border-color var(--transicion);
+}
+
+.nav-link:hover {
+  color: var(--color-acento);
+}
+
+.nav-link.activo {
+  border-bottom-color: var(--color-acento);
+  color: var(--color-acento);
 }
 
 .logo-app {
@@ -243,6 +275,13 @@ h1, h2, h3, p {
   flex: 1;
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+.item-carrito-restaurante {
+  display: block;
+  color: var(--color-texto-suave);
+  font-size: 0.75rem;
+  font-weight: 400;
 }
 
 .item-carrito-cantidad {
@@ -471,6 +510,25 @@ h1, h2, h3, p {
 
   .filtros-categoria {
     padding-top: 1.2rem;
+  }
+
+  .encabezado {
+    height: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .nav-principal {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 0.8rem;
   }
 
   .logo-app {

@@ -1,0 +1,12 @@
+/* ===== Estilos propios de la página "Todo" ===== */
+
+.todo-subtitulo {
+  margin: -0.5rem 0 1.25rem;
+  color: var(--color-texto-suave);
+  font-size: 0.9rem;
+}
+
+/* En esta página las tarjetas no tienen botón: se hace click en toda la tarjeta */
+.seccion-menu .tarjeta-plato {
+  cursor: pointer;
+}

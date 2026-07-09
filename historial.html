@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historial de Pedidos - DeliveryApp</title>
+  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="historial.css">
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header class="encabezado">
+    <nav class="nav-principal">
+      <a href="index.html"><img src="public/logo/logo.png" alt="DeliveryApp" class="logo-app"></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Todo</a></li>
+        <li><a href="restaurantes.html" class="nav-link">Restaurantes</a></li>
+        <li><a href="historial.html" class="nav-link activo">Historial de Pedidos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="seccion-historial">
+    <div class="historial-encabezado">
+      <h2>Historial de pedidos</h2>
+      <button type="button" id="btn-vaciar-historial" class="boton-vaciar-historial" hidden>
+        Vaciar historial
+      </button>
+    </div>
+
+    <p id="historial-mensaje-vacio" class="historial-mensaje-vacio">
+      Todavía no hiciste ningún pedido.
+    </p>
+
+    <div id="historial-container" class="historial-lista">
+      <!-- Acá se inyectan por JavaScript las tarjetas de pedidos pasados (class="pedido-card") -->
+    </div>
+  </section>
+
+  <!-- Librería externa de alertas y script propio -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="historial.js"></script>
+</body>
+</html>

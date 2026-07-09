@@ -3,16 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeliveryApp - Simulador de Pedidos</title>
-  <link rel="stylesheet" href="style.css?v=10">
+  <title>Todo - DeliveryApp</title>
+  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="todo.css">
 </head>
 <body>
 
   <!-- Encabezado -->
   <header class="encabezado">
     <nav class="nav-principal">
-      <img src="public/logo/logo.png" alt="DeliveryApp" class="logo-app">
-      <!-- Acá se pueden agregar los links de navegación más adelante -->
+      <a href="index.html"><img src="public/logo/logo.png" alt="DeliveryApp" class="logo-app"></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link activo">Todo</a></li>
+        <li><a href="restaurantes.html" class="nav-link">Restaurantes</a></li>
+        <li><a href="historial.html" class="nav-link">Historial de Pedidos</a></li>
+      </ul>
     </nav>
   </header>
 
@@ -23,6 +28,11 @@
     <button type="button" class="boton-filtro" data-categoria="Principales">Principales</button>
     <button type="button" class="boton-filtro" data-categoria="Postres">Postres</button>
     <button type="button" class="boton-filtro" data-categoria="Bebidas">Bebidas</button>
+    <button type="button" class="boton-filtro" data-categoria="Ensaladas">Ensaladas</button>
+    <button type="button" class="boton-filtro" data-categoria="Pastas">Pastas</button>
+    <button type="button" class="boton-filtro" data-categoria="Pizzas">Pizzas</button>
+    <button type="button" class="boton-filtro" data-categoria="Sandwiches">Sandwiches</button>
+    <button type="button" class="boton-filtro" data-categoria="Guarniciones">Guarniciones</button>
   </section>
 
   <!-- Contenido principal -->
@@ -30,7 +40,8 @@
 
     <!-- Menú de platos -->
     <section class="seccion-menu">
-      <h2>Nuestro Menú</h2>
+      <h2>Todas las comidas</h2>
+      <p class="todo-subtitulo">Elegí cualquier plato: te vamos a preguntar en qué restaurante querés pedirlo.</p>
       <div id="menu-container" class="menu-container">
         <!-- Acá se inyectan por JavaScript las tarjetas de platos (class="tarjeta-plato") -->
       </div>
@@ -104,8 +115,9 @@
     </button>
   </section>
 
-  <!-- Librería externa de alertas y script propio -->
+  <!-- Librería externa de alertas y scripts propios -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="script.js"></script>
+  <script src="comun.js"></script>
+  <script src="todo.js"></script>
 </body>
 </html>
