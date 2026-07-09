@@ -14,7 +14,9 @@ const botonesFiltro = document.querySelectorAll('.boton-filtro');
 // Trae los platos desde data/menu.json y los guarda en memoria
 async function cargarDatos() {
   try {
-    const respuestaMenu = await fetch('data/menu.json');
+    // "cache: no-store" evita que el navegador use una copia vieja guardada
+    // del JSON (por ejemplo, después de agregar o corregir imágenes de platos)
+    const respuestaMenu = await fetch('data/menu.json', { cache: 'no-store' });
 
     if (!respuestaMenu.ok) {
       throw new Error('No se pudieron obtener los datos');

@@ -269,7 +269,7 @@
     "descripcion": "Doble medallón, panceta crocante, cheddar y salsa barbacoa.",
     "precio": 8200,
     "categoria": "Sandwiches",
-    "imagen": "public/imagenescomidas/hamburguesadoblebacon.png"
+    "imagen": "public/imagenescomidas/hamburguesadoble.png"
   },
   {
     "id": 35,
@@ -285,7 +285,7 @@
     "descripcion": "Puré casero con manteca y un toque de nuez moscada.",
     "precio": 3000,
     "categoria": "Guarniciones",
-    "imagen": "public/imagenescomidas/pure.png"
+    "imagen": "public/imagenescomidas/puredepapas.png"
   },
   {
     "id": 37,
@@ -309,7 +309,7 @@
     "descripcion": "Base de galletita, queso crema y salsa de frutos rojos.",
     "precio": 4100,
     "categoria": "Postres",
-    "imagen": "public/imagenescomidas/cheesecake.png"
+    "imagen": "public/imagenescomidas/cheescake.png"
   },
   {
     "id": 40,
@@ -333,7 +333,7 @@
     "descripcion": "Dos bochas de helado a elección de sabores.",
     "precio": 3300,
     "categoria": "Postres",
-    "imagen": "public/imagenescomidas/heladoartesanal.png"
+    "imagen": "public/imagenescomidas/helado.png"
   },
   {
     "id": 43,

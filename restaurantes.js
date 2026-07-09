@@ -28,8 +28,10 @@ const menuContainerRestaurante = document.getElementById('menu-container');
 // Trae los restaurantes y los platos desde data/*.json y los guarda en memoria
 async function cargarDatos() {
   try {
-    const respuestaRestaurantes = await fetch('data/restaurantes.json');
-    const respuestaMenu = await fetch('data/menu.json');
+    // "cache: no-store" evita que el navegador use una copia vieja guardada
+    // de los JSON (por ejemplo, después de agregar restaurantes o imágenes)
+    const respuestaRestaurantes = await fetch('data/restaurantes.json', { cache: 'no-store' });
+    const respuestaMenu = await fetch('data/menu.json', { cache: 'no-store' });
 
     if (!respuestaRestaurantes.ok || !respuestaMenu.ok) {
       throw new Error('No se pudieron obtener los datos');
