@@ -16,7 +16,7 @@ async function cargarDatos() {
   try {
     // "cache: no-store" evita que el navegador use una copia vieja guardada
     // del JSON (por ejemplo, después de agregar o corregir imágenes de platos)
-    const respuestaMenu = await fetch('data/menu.json', { cache: 'no-store' });
+    const respuestaMenu = await fetch('/data/menu.json', { cache: 'no-store' });
 
     if (!respuestaMenu.ok) {
       throw new Error('No se pudieron obtener los datos');
@@ -57,7 +57,7 @@ function configurarFiltros() {
 
 // Lleva a "restaurantes.html" mostrando solo los restaurantes que tienen este plato
 function irARestaurantesConPlato(idPlato) {
-  window.location.href = `restaurantes.html?plato=${idPlato}`;
+  window.location.href = `/paginas/restaurantes.html?plato=${idPlato}`;
 }
 
 // Delegación de eventos: un click en cualquier parte de la tarjeta navega a restaurantes.html
@@ -70,13 +70,12 @@ function configurarMenu() {
   });
 }
 
-// Punto de entrada: se ejecuta cuando el HTML terminó de cargar
-document.addEventListener('DOMContentLoaded', () => {
-  cargarDatos();
-  configurarFiltros();
-  configurarMenu();
-  configurarCarrito();
-  configurarCheckout();
-  configurarTracking();
-  renderizarCarrito();
-});
+// Punto de entrada: el script está al final del body, así que el HTML ya
+// está completamente cargado en el momento en que se ejecuta este código
+cargarDatos();
+configurarFiltros();
+configurarMenu();
+configurarCarrito();
+configurarCheckout();
+configurarTracking();
+renderizarCarrito();

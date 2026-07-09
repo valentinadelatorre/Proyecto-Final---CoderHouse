@@ -5,7 +5,7 @@
     "descripcion": "Trío de empanadas caseras rellenas de carne cortada a cuchillo.",
     "precio": 3500,
     "categoria": "Entradas",
-    "imagen": "public/imagenescomidas/empanada.png"
+    "imagen": "/public/imagenescomidas/empanada.png"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "descripcion": "Queso provolone grillado con orégano y aceite de oliva.",
     "precio": 4200,
     "categoria": "Entradas",
-    "imagen": "public/imagenescomidas/provoleta.png"
+    "imagen": "/public/imagenescomidas/provoleta.png"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "descripcion": "Milanesa de carne con jamón, queso y salsa de tomate, con guarnición.",
     "precio": 8900,
     "categoria": "Principales",
-    "imagen": "public/imagenescomidas/milanesanapo.png"
+    "imagen": "/public/imagenescomidas/milanesanapo.png"
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "descripcion": "Bife de chorizo a la parrilla acompañado de papas fritas.",
     "precio": 9500,
     "categoria": "Principales",
-    "imagen": "public/imagenescomidas/bifedechorizo.png"
+    "imagen": "/public/imagenescomidas/bifedechorizo.png"
   },
   {
     "id": 5,
@@ -37,7 +37,7 @@
     "descripcion": "Flan casero con dulce de leche y crema.",
     "precio": 3200,
     "categoria": "Postres",
-    "imagen": "public/imagenescomidas/flan.png"
+    "imagen": "/public/imagenescomidas/flan.png"
   },
   {
     "id": 6,
@@ -45,7 +45,7 @@
     "descripcion": "Postre italiano de café, mascarpone y cacao.",
     "precio": 3800,
     "categoria": "Postres",
-    "imagen": "public/imagenescomidas/tiramisu.png"
+    "imagen": "/public/imagenescomidas/tiramisu.png"
   },
   {
     "id": 7,
@@ -53,7 +53,7 @@
     "descripcion": "Bebida cola bien fría, botella de 500ml.",
     "precio": 1800,
     "categoria": "Bebidas",
-    "imagen": "public/imagenescomidas/cocacola.png"
+    "imagen": "/public/imagenescomidas/cocacola.png"
   },
   {
     "id": 8,
@@ -61,7 +61,7 @@
     "descripcion": "Agua mineral sin gas, botella de 500ml.",
     "precio": 1500,
     "categoria": "Bebidas",
-    "imagen": "public/imagenescomidas/agua.png"
+    "imagen": "/public/imagenescomidas/agua.png"
   },
   {
     "id": 9,
@@ -69,7 +69,7 @@
     "descripcion": "Anillos de calamar rebozados y fritos, servidos con limón y salsa golf.",
     "precio": 5200,
     "categoria": "Entradas",
-    "imagen": "public/imagenescomidas/rabas.png"
+    "imagen": "/public/imagenescomidas/rabas.png"
   },
   {
     "id": 10,
@@ -77,7 +77,7 @@
     "descripcion": "Selección de jamón crudo, salame, queso y aceitunas.",
     "precio": 6800,
     "categoria": "Entradas",
-    "imagen": "public/imagenescomidas/fiambres.png"
+    "imagen": "/public/imagenescomidas/fiambres.png"
   },
   {
     "id": 11,
@@ -85,7 +85,7 @@
     "descripcion": "Trío de empanadas rellenas de choclo cremoso y queso.",
     "precio": 3500,
     "categoria": "Entradas",
-    "imagen": "public/imagenescomidas/empanadahumita.png"
+    "imagen": "/public/imagenescomidas/empanadahumita.png"
   },
   {
     "id": 12,
@@ -93,7 +93,7 @@
     "descripcion": "Papas fritas con salsa picante y alioli casero.",
     "precio": 4000,
     "categoria": "Entradas",
-    "imagen": "public/imagenescomidas/papasbravas.png"
+    "imagen": "/public/imagenescomidas/papasbravas.png"
   },
   {
     "id": 13,
@@ -101,7 +101,7 @@
     "descripcion": "Lechuga, pollo grillado, crutones, parmesano y aderezo césar.",
     "precio": 5800,
     "categoria": "Ensaladas",
-    "imagen": "public/imagenescomidas/ensaladacesar.png"
+    "imagen": "/public/imagenescomidas/ensaladacesar.png"
   },
   {
     "id": 14,
@@ -109,7 +109,7 @@
     "descripcion": "Tomate, mozzarella fresca, albahaca y reducción de balsámico.",
     "precio": 5200,
     "categoria": "Ensaladas",
-    "imagen": "public/imagenescomidas/ensaladacaprese.png"
+    "imagen": "/public/imagenescomidas/ensaladacaprese.png"
   },
   {
     "id": 15,
@@ -117,7 +117,7 @@
     "descripcion": "Lechuga, tomate, cebolla, huevo y zanahoria rallada.",
     "precio": 3900,
     "categoria": "Ensaladas",
-    "imagen": "public/imagenescomidas/ensaladamixta.png"
+    "imagen": "/public/imagenescomidas/ensaladamixta.png"
   },
   {
     "id": 16,
@@ -125,7 +125,7 @@
     "descripcion": "Costillar de asado a la parrilla con chimichurri.",
     "precio": 10200,
     "categoria": "Principales",
-    "imagen": "public/imagenescomidas/asadotira.png"
+    "imagen": "/public/imagenescomidas/asadotira.png"
   },
   {
     "id": 17,
@@ -133,7 +133,7 @@
     "descripcion": "Vacío cocido a fuego lento en disco de arado con vegetales.",
     "precio": 9800,
     "categoria": "Principales",
-    "imagen": "public/imagenescomidas/vacioaldisco.png"
+    "imagen": "/public/imagenescomidas/vacioaldisco.png"
   },
   {
     "id": 18,
@@ -141,7 +141,7 @@
     "descripcion": "Suprema de pollo en salsa de crema y cebolla de verdeo, con puré.",
     "precio": 7600,
     "categoria": "Principales",
-    "imagen": "public/imagenescomidas/polloalverdeo.png"
+    "imagen": "/public/imagenescomidas/polloalverdeo.png"
   },
   {
     "id": 19,
@@ -149,7 +149,7 @@
     "descripcion": "Milanesa de carne con dos huevos fritos arriba y papas fritas.",
     "precio": 8500,
     "categoria": "Principales",
-    "imagen": "public/imagenescomidas/milanesaacaballo.png"
+    "imagen": "/public/imagenescomidas/milanesaacaballo.png"
   },
   {
     "id": 20,
@@ -157,7 +157,7 @@
     "descripcion": "Costillar de cerdo braseado con salsa barbacoa casera.",
     "precio": 9900,
     "categoria": "Principales",
-    "imagen": "public/imagenescomidas/costillardecerdo.png"
+    "imagen": "/public/imagenescomidas/costillardecerdo.png"
   },
   {
     "id": 21,
@@ -165,7 +165,7 @@
     "descripcion": "Filet de salmón a la plancha con vegetales salteados.",
     "precio": 11500,
     "categoria": "Principales",
-    "imagen": "public/imagenescomidas/salmongrillado.png"
+    "imagen": "/public/imagenescomidas/salmongrillado.png"
   },
   {
     "id": 22,
@@ -173,7 +173,7 @@
     "descripcion": "Pastas rellenas con salsa a elección (fileto, crema o mixta).",
     "precio": 6900,
     "categoria": "Pastas",
-    "imagen": "public/imagenescomidas/sorrentinos.png"
+    "imagen": "/public/imagenescomidas/sorrentinos.png"
   },
   {
     "id": 23,
@@ -181,7 +181,7 @@
     "descripcion": "Ñoquis caseros con salsa fileto y albahaca.",
     "precio": 6200,
     "categoria": "Pastas",
-    "imagen": "public/imagenescomidas/ñoquis.png"
+    "imagen": "/public/imagenescomidas/ñoquis.png"
   },
   {
     "id": 24,
@@ -189,7 +189,7 @@
     "descripcion": "Fettuccine en salsa cremosa de manteca y parmesano.",
     "precio": 6700,
     "categoria": "Pastas",
-    "imagen": "public/imagenescomidas/fettuccine.png"
+    "imagen": "/public/imagenescomidas/fettuccine.png"
   },
   {
     "id": 25,
@@ -197,7 +197,7 @@
     "descripcion": "Ravioles caseros con salsa a elección.",
     "precio": 6900,
     "categoria": "Pastas",
-    "imagen": "public/imagenescomidas/ravioles.png"
+    "imagen": "/public/imagenescomidas/ravioles.png"
   },
   {
     "id": 26,
@@ -205,7 +205,7 @@
     "descripcion": "Pizza clásica de muzzarella con aceitunas.",
     "precio": 7200,
     "categoria": "Pizzas",
-    "imagen": "public/imagenescomidas/pizzamuzzarella.png"
+    "imagen": "/public/imagenescomidas/pizzamuzzarella.png"
   },
   {
     "id": 27,
@@ -213,7 +213,7 @@
     "descripcion": "Pizza con muzzarella, tomate, ajo y jamón.",
     "precio": 8100,
     "categoria": "Pizzas",
-    "imagen": "public/imagenescomidas/pizzanapolitana.png"
+    "imagen": "/public/imagenescomidas/pizzanapolitana.png"
   },
   {
     "id": 28,
@@ -221,7 +221,7 @@
     "descripcion": "Pizza de cebolla y muzzarella al estilo porteño.",
     "precio": 7800,
     "categoria": "Pizzas",
-    "imagen": "public/imagenescomidas/pizzafugazzeta.png"
+    "imagen": "/public/imagenescomidas/pizzafugazzeta.png"
   },
   {
     "id": 29,
@@ -229,7 +229,7 @@
     "descripcion": "Muzzarella, provolone, roquefort y parmesano.",
     "precio": 8500,
     "categoria": "Pizzas",
-    "imagen": "public/imagenescomidas/pizzacuatroquesos.png"
+    "imagen": "/public/imagenescomidas/pizzacuatroquesos.png"
   },
   {
     "id": 30,
@@ -237,7 +237,7 @@
     "descripcion": "Milanesa de carne, lechuga, tomate y mayonesa en pan francés.",
     "precio": 5900,
     "categoria": "Sandwiches",
-    "imagen": "public/imagenescomidas/sandwichmilanesa.png"
+    "imagen": "/public/imagenescomidas/sandwichmilanesa.png"
   },
   {
     "id": 31,
@@ -245,7 +245,7 @@
     "descripcion": "Lomito con jamón, queso, lechuga, tomate y huevo.",
     "precio": 7200,
     "categoria": "Sandwiches",
-    "imagen": "public/imagenescomidas/lomitocompleto.png"
+    "imagen": "/public/imagenescomidas/lomitocompleto.png"
   },
   {
     "id": 32,
@@ -253,7 +253,7 @@
     "descripcion": "Chorizo a la parrilla en pan casero con chimichurri.",
     "precio": 4200,
     "categoria": "Sandwiches",
-    "imagen": "public/imagenescomidas/choripan.png"
+    "imagen": "/public/imagenescomidas/choripan.png"
   },
   {
     "id": 33,
@@ -261,7 +261,7 @@
     "descripcion": "Medallón de carne, cheddar, lechuga, tomate y papas fritas.",
     "precio": 6500,
     "categoria": "Sandwiches",
-    "imagen": "public/imagenescomidas/hamburguesaclasica.png"
+    "imagen": "/public/imagenescomidas/hamburguesaclasica.png"
   },
   {
     "id": 34,
@@ -269,7 +269,7 @@
     "descripcion": "Doble medallón, panceta crocante, cheddar y salsa barbacoa.",
     "precio": 8200,
     "categoria": "Sandwiches",
-    "imagen": "public/imagenescomidas/hamburguesadoble.png"
+    "imagen": "/public/imagenescomidas/hamburguesadoble.png"
   },
   {
     "id": 35,
@@ -277,7 +277,7 @@
     "descripcion": "Papas fritas caseras, porción grande.",
     "precio": 3200,
     "categoria": "Guarniciones",
-    "imagen": "public/imagenescomidas/papasfritas.png"
+    "imagen": "/public/imagenescomidas/papasfritas.png"
   },
   {
     "id": 36,
@@ -285,7 +285,7 @@
     "descripcion": "Puré casero con manteca y un toque de nuez moscada.",
     "precio": 3000,
     "categoria": "Guarniciones",
-    "imagen": "public/imagenescomidas/puredepapas.png"
+    "imagen": "/public/imagenescomidas/puredepapas.png"
   },
   {
     "id": 37,
@@ -293,7 +293,7 @@
     "descripcion": "Mix de vegetales de estación grillados con aceite de oliva.",
     "precio": 3400,
     "categoria": "Guarniciones",
-    "imagen": "public/imagenescomidas/vegetalesgrillados.png"
+    "imagen": "/public/imagenescomidas/vegetalesgrillados.png"
   },
   {
     "id": 38,
@@ -301,7 +301,7 @@
     "descripcion": "Arroz salteado con vegetales frescos.",
     "precio": 3100,
     "categoria": "Guarniciones",
-    "imagen": "public/imagenescomidas/arrozprimavera.png"
+    "imagen": "/public/imagenescomidas/arrozprimavera.png"
   },
   {
     "id": 39,
@@ -309,7 +309,7 @@
     "descripcion": "Base de galletita, queso crema y salsa de frutos rojos.",
     "precio": 4100,
     "categoria": "Postres",
-    "imagen": "public/imagenescomidas/cheescake.png"
+    "imagen": "/public/imagenescomidas/cheescake.png"
   },
   {
     "id": 40,
@@ -317,7 +317,7 @@
     "descripcion": "Brownie de chocolate tibio con bocha de helado de vainilla.",
     "precio": 4300,
     "categoria": "Postres",
-    "imagen": "public/imagenescomidas/browniehelado.png"
+    "imagen": "/public/imagenescomidas/browniehelado.png"
   },
   {
     "id": 41,
@@ -325,7 +325,7 @@
     "descripcion": "Panqueques rellenos de dulce de leche y crema.",
     "precio": 3600,
     "categoria": "Postres",
-    "imagen": "public/imagenescomidas/panqueque.png"
+    "imagen": "/public/imagenescomidas/panqueque.png"
   },
   {
     "id": 42,
@@ -333,7 +333,7 @@
     "descripcion": "Dos bochas de helado a elección de sabores.",
     "precio": 3300,
     "categoria": "Postres",
-    "imagen": "public/imagenescomidas/helado.png"
+    "imagen": "/public/imagenescomidas/helado.png"
   },
   {
     "id": 43,
@@ -341,7 +341,7 @@
     "descripcion": "Frutas frescas de estación con jugo de naranja.",
     "precio": 2900,
     "categoria": "Postres",
-    "imagen": "public/imagenescomidas/ensaladafrutas.png"
+    "imagen": "/public/imagenescomidas/ensaladafrutas.png"
   },
   {
     "id": 44,
@@ -349,7 +349,7 @@
     "descripcion": "Bebida lima-limón bien fría, botella de 500ml.",
     "precio": 1800,
     "categoria": "Bebidas",
-    "imagen": "public/imagenescomidas/limonlimon.png"
+    "imagen": "/public/imagenescomidas/limonlimon.png"
   },
   {
     "id": 45,
@@ -357,7 +357,7 @@
     "descripcion": "Agua saborizada sin gas, botella de 500ml.",
     "precio": 1600,
     "categoria": "Bebidas",
-    "imagen": "public/imagenescomidas/aguasaborizada.png"
+    "imagen": "/public/imagenescomidas/aguasaborizada.png"
   },
   {
     "id": 46,
@@ -365,7 +365,7 @@
     "descripcion": "Cerveza rubia tirada, pinta de 500ml.",
     "precio": 3200,
     "categoria": "Bebidas",
-    "imagen": "public/imagenescomidas/cervezarubia.png"
+    "imagen": "/public/imagenescomidas/cervezarubia.png"
   },
   {
     "id": 47,
@@ -373,7 +373,7 @@
     "descripcion": "Copa de vino tinto Malbec de bodega local.",
     "precio": 3800,
     "categoria": "Bebidas",
-    "imagen": "public/imagenescomidas/vinomalbec.png"
+    "imagen": "/public/imagenescomidas/vinomalbec.png"
   },
   {
     "id": 48,
@@ -381,7 +381,7 @@
     "descripcion": "Limonada casera con menta y jengibre, jarra chica.",
     "precio": 3400,
     "categoria": "Bebidas",
-    "imagen": "public/imagenescomidas/limonadacasera.png"
+    "imagen": "/public/imagenescomidas/limonadacasera.png"
   },
   {
     "id": 49,
@@ -389,7 +389,7 @@
     "descripcion": "Café espresso servido con una masita.",
     "precio": 1900,
     "categoria": "Bebidas",
-    "imagen": "public/imagenescomidas/cafeespresso.png"
+    "imagen": "/public/imagenescomidas/cafeespresso.png"
   },
   {
     "id": 50,
@@ -397,6 +397,6 @@
     "descripcion": "Licuado natural de frutas a elección con leche o agua.",
     "precio": 2800,
     "categoria": "Bebidas",
-    "imagen": "public/imagenescomidas/licuado.png"
+    "imagen": "/public/imagenescomidas/licuado.png"
   }
 ]

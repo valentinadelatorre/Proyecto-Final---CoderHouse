@@ -2,8 +2,10 @@
 // Funciones compartidas entre las páginas "index.html" (Todo) y "restaurantes.html":
 // carrito de compras, checkout, historial y seguimiento del pedido.
 
-// Array en memoria con los ítems agregados al pedido
-let carrito = [];
+// Array en memoria con los ítems agregados al pedido.
+// Si ya había un carrito guardado en localStorage (por ejemplo, de antes de
+// refrescar la página), lo recuperamos; si no existe, arranca vacío.
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 // Referencias a elementos del DOM del carrito y el checkout
 const carritoContainer = document.getElementById('carrito-container');
@@ -100,8 +102,15 @@ function calcularTotal() {
   return carrito.reduce((acumulado, item) => acumulado + item.precio * item.cantidad, 0);
 }
 
+// Guarda el carrito actual en localStorage para no perderlo si se refresca la página
+function guardarCarritoEnStorage() {
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
 // Renderiza los ítems del carrito (o el mensaje de "vacío") y el total
 function renderizarCarrito() {
+  guardarCarritoEnStorage();
+
   const hayItems = carrito.length > 0;
   carritoMensajeVacio.hidden = hayItems;
 

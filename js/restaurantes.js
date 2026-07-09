@@ -30,8 +30,8 @@ async function cargarDatos() {
   try {
     // "cache: no-store" evita que el navegador use una copia vieja guardada
     // de los JSON (por ejemplo, después de agregar restaurantes o imágenes)
-    const respuestaRestaurantes = await fetch('data/restaurantes.json', { cache: 'no-store' });
-    const respuestaMenu = await fetch('data/menu.json', { cache: 'no-store' });
+    const respuestaRestaurantes = await fetch('/data/restaurantes.json', { cache: 'no-store' });
+    const respuestaMenu = await fetch('/data/menu.json', { cache: 'no-store' });
 
     if (!respuestaRestaurantes.ok || !respuestaMenu.ok) {
       throw new Error('No se pudieron obtener los datos');
@@ -198,15 +198,14 @@ function configurarBotonVolver() {
   botonVolverRestaurantes.addEventListener('click', volverARestaurantes);
 }
 
-// Punto de entrada: se ejecuta cuando el HTML terminó de cargar
-document.addEventListener('DOMContentLoaded', () => {
-  cargarDatos();
-  configurarGridRestaurantes();
-  configurarFiltrosRestaurante();
-  configurarMenuRestaurante();
-  configurarBotonVolver();
-  configurarCarrito();
-  configurarCheckout();
-  configurarTracking();
-  renderizarCarrito();
-});
+// Punto de entrada: el script está al final del body, así que el HTML ya
+// está completamente cargado en el momento en que se ejecuta este código
+cargarDatos();
+configurarGridRestaurantes();
+configurarFiltrosRestaurante();
+configurarMenuRestaurante();
+configurarBotonVolver();
+configurarCarrito();
+configurarCheckout();
+configurarTracking();
+renderizarCarrito();

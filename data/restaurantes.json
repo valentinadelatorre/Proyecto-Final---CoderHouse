@@ -3,84 +3,84 @@
     "id": 1,
     "nombre": "La Parrilla de Don Mario",
     "descripcion": "Carnes a la parrilla y platos caseros de siempre.",
-    "imagen": "public/restaurantes/parrilladonmario.png",
+    "imagen": "/public/restaurantes/parrilladonmario.png",
     "categorias": ["Entradas", "Principales", "Guarniciones"]
   },
   {
     "id": 2,
     "nombre": "Pizzería Napoli",
     "descripcion": "Pizzas a la piedra con la receta de la nonna.",
-    "imagen": "public/restaurantes/pizzerianapoli.png",
+    "imagen": "/public/restaurantes/pizzerianapoli.png",
     "categorias": ["Pizzas", "Ensaladas", "Bebidas"]
   },
   {
     "id": 3,
     "nombre": "Pastas del Nonno",
     "descripcion": "Pastas artesanales frescas todos los días.",
-    "imagen": "public/restaurantes/pastasdelnono.png",
+    "imagen": "/public/restaurantes/pastasdelnono.png",
     "categorias": ["Pastas", "Ensaladas", "Bebidas"]
   },
   {
     "id": 4,
     "nombre": "Sándwiches Express",
     "descripcion": "Sándwiches y lomitos para comer rápido y rico.",
-    "imagen": "public/restaurantes/sandwichesexpress.png",
+    "imagen": "/public/restaurantes/sandwichesexpress.png",
     "categorias": ["Sandwiches", "Guarniciones", "Bebidas"]
   },
   {
     "id": 5,
     "nombre": "Dulce Tentación",
     "descripcion": "Postres caseros y algo fresco para acompañar.",
-    "imagen": "public/restaurantes/dulcetentacion.png",
+    "imagen": "/public/restaurantes/dulcetentacion.png",
     "categorias": ["Postres", "Bebidas"]
   },
   {
     "id": 6,
     "nombre": "El Rincón Verde",
     "descripcion": "Ensaladas, platos livianos y opciones saludables.",
-    "imagen": "public/restaurantes/rinconverde.png",
+    "imagen": "/public/restaurantes/rinconverde.png",
     "categorias": ["Ensaladas", "Principales", "Postres", "Bebidas"]
   },
   {
     "id": 7,
     "nombre": "Cantina La Esquina",
     "descripcion": "Cantina de barrio con lo mejor de la cocina argentina e italiana.",
-    "imagen": "public/restaurantes/cantinaesquina.png",
+    "imagen": "/public/restaurantes/cantinaesquina.png",
     "categorias": ["Entradas", "Principales", "Pastas", "Bebidas"]
   },
   {
     "id": 8,
     "nombre": "Burger Point",
     "descripcion": "Hamburguesas artesanales, papas y algo dulce para cerrar.",
-    "imagen": "public/restaurantes/burgerpoint.png",
+    "imagen": "/public/restaurantes/burgerpoint.png",
     "categorias": ["Sandwiches", "Guarniciones", "Postres", "Bebidas"]
   },
   {
     "id": 9,
     "nombre": "Trattoria Bella Italia",
     "descripcion": "Pastas y pizzas al estilo italiano, con antipasti frescos.",
-    "imagen": "public/restaurantes/trattoriabella.png",
+    "imagen": "/public/restaurantes/trattoriabella.png",
     "categorias": ["Pastas", "Pizzas", "Ensaladas", "Bebidas"]
   },
   {
     "id": 10,
     "nombre": "Asador Criollo",
     "descripcion": "Parrilla criolla con cortes clásicos y guarniciones caseras.",
-    "imagen": "public/restaurantes/asadorcriollo.png",
+    "imagen": "/public/restaurantes/asadorcriollo.png",
     "categorias": ["Entradas", "Principales", "Guarniciones", "Bebidas"]
   },
   {
     "id": 11,
     "nombre": "Café de la Plaza",
     "descripcion": "Cafetería de barrio ideal para una merienda liviana o un café con algo dulce.",
-    "imagen": "public/restaurantes/cafeplaza.png",
+    "imagen": "/public/restaurantes/cafeplaza.png",
     "categorias": ["Postres", "Ensaladas", "Bebidas"]
   },
   {
     "id": 12,
     "nombre": "Verde Vida",
     "descripcion": "Opciones saludables, livianas y frescas para cualquier momento del día.",
-    "imagen": "public/restaurantes/verdevida.png",
+    "imagen": "/public/restaurantes/verdevida.png",
     "categorias": ["Ensaladas", "Guarniciones", "Postres", "Bebidas"]
   }
 ]

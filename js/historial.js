@@ -75,8 +75,7 @@ function configurarHistorial() {
   botonVaciarHistorial.addEventListener('click', vaciarHistorial);
 }
 
-// Punto de entrada: se ejecuta cuando el HTML terminó de cargar
-document.addEventListener('DOMContentLoaded', () => {
-  renderizarHistorial();
-  configurarHistorial();
-});
+// Punto de entrada: el script está al final del body, así que el HTML ya
+// está completamente cargado en el momento en que se ejecuta este código
+renderizarHistorial();
+configurarHistorial();
