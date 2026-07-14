@@ -349,7 +349,7 @@
     "descripcion": "Bebida lima-limón bien fría, botella de 500ml.",
     "precio": 1800,
     "categoria": "Bebidas",
-    "imagen": "/public/imagenescomidas/limonlimon.png"
+    "imagen": "/public/imagenescomidas/lima-limon.png"
   },
   {
     "id": 45,
@@ -373,7 +373,7 @@
     "descripcion": "Copa de vino tinto Malbec de bodega local.",
     "precio": 3800,
     "categoria": "Bebidas",
-    "imagen": "/public/imagenescomidas/vinomalbec.png"
+    "imagen": "/public/imagenescomidas/copadevino.png"
   },
   {
     "id": 48,
@@ -389,7 +389,7 @@
     "descripcion": "Café espresso servido con una masita.",
     "precio": 1900,
     "categoria": "Bebidas",
-    "imagen": "/public/imagenescomidas/cafeespresso.png"
+    "imagen": "/public/imagenescomidas/cafeexpresso.png"
   },
   {
     "id": 50,
@@ -397,6 +397,6 @@
     "descripcion": "Licuado natural de frutas a elección con leche o agua.",
     "precio": 2800,
     "categoria": "Bebidas",
-    "imagen": "/public/imagenescomidas/licuado.png"
+    "imagen": "/public/imagenescomidas/licuadodefrutas.png"
   }
 ]

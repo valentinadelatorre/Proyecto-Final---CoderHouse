@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Restaurantes - DeliveryApp</title>
-  <link rel="stylesheet" href="/estilos/style.css?v=12">
+  <link rel="stylesheet" href="/estilos/style.css?v=15">
   <link rel="stylesheet" href="/estilos/restaurantes.css?v=3">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <body>
 
@@ -85,6 +86,26 @@
               <option value="Mercado Pago">Mercado Pago</option>
             </select>
           </div>
+
+          <!-- Esto solo se muestra si elegís "Tarjeta" como método de pago -->
+          <div id="campos-tarjeta" class="campos-tarjeta" hidden>
+            <div class="campo-formulario">
+              <label for="input-numero-tarjeta">Número de tarjeta</label>
+              <input type="text" inputmode="numeric" id="input-numero-tarjeta" name="numeroTarjeta" placeholder="Ej: 4123456789012345" maxlength="16">
+            </div>
+
+            <div class="campo-formulario-fila">
+              <div class="campo-formulario">
+                <label for="input-vencimiento-tarjeta">Vencimiento (MMAA)</label>
+                <input type="text" inputmode="numeric" id="input-vencimiento-tarjeta" name="vencimientoTarjeta" placeholder="Ej: 1229" maxlength="4">
+              </div>
+
+              <div class="campo-formulario">
+                <label for="input-cvv-tarjeta">CVV</label>
+                <input type="text" inputmode="numeric" id="input-cvv-tarjeta" name="cvvTarjeta" placeholder="Ej: 123" maxlength="4">
+              </div>
+            </div>
+          </div>
         </form>
 
         <div class="carrito-resumen">
@@ -113,9 +134,10 @@
     </button>
   </section>
 
-  <!-- Librería externa de alertas y scripts propios -->
+  <!-- Librerías externas de alertas y notificaciones, y scripts propios -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="/js/comun.js?v=3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/js/comun.js?v=5"></script>
   <script src="/js/restaurantes.js?v=3"></script>
 </body>
 </html>

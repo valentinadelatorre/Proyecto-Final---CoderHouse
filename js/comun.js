@@ -1,13 +1,6 @@
-// comun.js
-// Funciones compartidas entre las páginas "index.html" (Todo) y "restaurantes.html":
-// carrito de compras, checkout, historial y seguimiento del pedido.
-
-// Array en memoria con los ítems agregados al pedido.
-// Si ya había un carrito guardado en localStorage (por ejemplo, de antes de
-// refrescar la página), lo recuperamos; si no existe, arranca vacío.
+// comun.js - carrito, checkout y tracking
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-// Referencias a elementos del DOM del carrito y el checkout
 const carritoContainer = document.getElementById('carrito-container');
 const carritoLista = document.getElementById('carrito-lista');
 const carritoMensajeVacio = document.getElementById('carrito-mensaje-vacio');
@@ -19,21 +12,48 @@ const botonNuevoPedido = document.getElementById('btn-nuevo-pedido');
 const filtrosCategoria = document.querySelector('.filtros-categoria');
 const contenidoPrincipal = document.querySelector('.contenido-principal');
 
-// Referencias al formulario de datos de entrega
 const formDatosCliente = document.getElementById('form-datos-cliente');
 const inputNombre = document.getElementById('input-nombre');
 const inputDireccion = document.getElementById('input-direccion');
 const inputTelefono = document.getElementById('input-telefono');
 const selectMetodoPago = document.getElementById('select-metodo-pago');
 
-// Da formato de precio en pesos a un número (ej: 3500 -> $3.500)
+const camposTarjeta = document.getElementById('campos-tarjeta');
+const inputNumeroTarjeta = document.getElementById('input-numero-tarjeta');
+const inputVencimientoTarjeta = document.getElementById('input-vencimiento-tarjeta');
+const inputCvvTarjeta = document.getElementById('input-cvv-tarjeta');
+const inputsSoloNumeros = [inputNumeroTarjeta, inputVencimientoTarjeta, inputCvvTarjeta];
+
 function formatearPrecio(precio) {
   return `$${precio.toLocaleString('es-AR')}`;
 }
 
-// Renderiza una lista de platos como tarjetas dentro del contenedor indicado.
-// "mostrarBoton" (true por defecto) permite ocultar "Agregar al pedido" en
-// páginas donde el plato todavía no está conectado a un restaurante (ej: "Todo").
+// estilos custom para sweetalert
+const estilosSwal = {
+  customClass: {
+    popup: 'swal-popup-app',
+    title: 'swal-titulo-app',
+    htmlContainer: 'swal-texto-app',
+    confirmButton: 'swal-confirmar-app',
+    cancelButton: 'swal-cancelar-app',
+    icon: 'swal-icono-app'
+  },
+  buttonsStyling: false
+};
+
+// toast arriba a la derecha
+function mostrarToast(mensaje, esError = false) {
+  Toastify({
+    text: mensaje,
+    duration: 2500,
+    gravity: 'top',
+    position: 'right',
+    className: `toastify-app ${esError ? 'toast-error' : ''}`,
+    stopOnFocus: true
+  }).showToast();
+}
+
+// dibuja las tarjetas de platos
 function renderizarMenu(listaPlatos, contenedor, mostrarBoton = true) {
   contenedor.innerHTML = listaPlatos
     .map((plato) => `
@@ -57,7 +77,7 @@ function renderizarMenu(listaPlatos, contenedor, mostrarBoton = true) {
     .join('');
 }
 
-// Busca el ítem por plato + restaurante y lo agrega al carrito (o suma cantidad si ya estaba)
+// suma al carrito, o incrementa cantidad si ya está
 function agregarAlCarrito(plato, nombreRestaurante) {
   const itemExistente = carrito.find(
     (item) => item.id === plato.id && item.restaurante === nombreRestaurante
@@ -69,10 +89,11 @@ function agregarAlCarrito(plato, nombreRestaurante) {
     carrito.push({ ...plato, cantidad: 1, restaurante: nombreRestaurante });
   }
 
+  mostrarToast(`Se agregó "${plato.nombre}" al carrito`);
   renderizarCarrito();
 }
 
-// Suma o resta unidades a un ítem del carrito; si llega a 0, lo elimina
+// suma o resta cantidad, elimina si llega a 0
 function cambiarCantidad(idPlato, nombreRestaurante, delta) {
   const item = carrito.find(
     (item) => item.id === idPlato && item.restaurante === nombreRestaurante
@@ -89,7 +110,6 @@ function cambiarCantidad(idPlato, nombreRestaurante, delta) {
   renderizarCarrito();
 }
 
-// Saca por completo un ítem del carrito usando filter
 function eliminarDelCarrito(idPlato, nombreRestaurante) {
   carrito = carrito.filter(
     (item) => !(item.id === idPlato && item.restaurante === nombreRestaurante)
@@ -97,17 +117,14 @@ function eliminarDelCarrito(idPlato, nombreRestaurante) {
   renderizarCarrito();
 }
 
-// Suma precio x cantidad de todos los ítems del carrito
 function calcularTotal() {
   return carrito.reduce((acumulado, item) => acumulado + item.precio * item.cantidad, 0);
 }
 
-// Guarda el carrito actual en localStorage para no perderlo si se refresca la página
 function guardarCarritoEnStorage() {
   localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
-// Renderiza los ítems del carrito (o el mensaje de "vacío") y el total
 function renderizarCarrito() {
   guardarCarritoEnStorage();
 
@@ -135,7 +152,6 @@ function renderizarCarrito() {
   carritoTotalMonto.textContent = formatearPrecio(calcularTotal());
 }
 
-// Delegación de eventos: un solo listener para +/- y eliminar en el carrito
 function configurarCarrito() {
   carritoContainer.addEventListener('click', (evento) => {
     const boton = evento.target.closest('button[data-accion]');
@@ -151,17 +167,19 @@ function configurarCarrito() {
   });
 }
 
-// Lee los valores actuales del formulario de datos de entrega
 function obtenerDatosCliente() {
   return {
     nombre: inputNombre.value.trim(),
     direccion: inputDireccion.value.trim(),
     telefono: inputTelefono.value.trim(),
-    metodoPago: selectMetodoPago.value
+    metodoPago: selectMetodoPago.value,
+    numeroTarjeta: inputNumeroTarjeta.value.trim(),
+    vencimientoTarjeta: inputVencimientoTarjeta.value.trim(),
+    cvvTarjeta: inputCvvTarjeta.value.trim()
   };
 }
 
-// Devuelve la lista de nombres de campos que quedaron sin completar
+// valida qué campos del form faltan completar
 function obtenerCamposFaltantes(datosCliente) {
   const faltantes = [];
 
@@ -170,10 +188,32 @@ function obtenerCamposFaltantes(datosCliente) {
   if (!datosCliente.telefono) faltantes.push('teléfono');
   if (!datosCliente.metodoPago) faltantes.push('método de pago');
 
+  if (datosCliente.metodoPago === 'Tarjeta') {
+    if (!datosCliente.numeroTarjeta) faltantes.push('número de tarjeta');
+    if (!datosCliente.vencimientoTarjeta) faltantes.push('vencimiento de la tarjeta');
+    if (!datosCliente.cvvTarjeta) faltantes.push('CVV de la tarjeta');
+  }
+
   return faltantes;
 }
 
-// Agrega un pedido ya confirmado al historial guardado en localStorage
+// muestra u oculta los campos de tarjeta según el método de pago
+function actualizarCamposTarjeta() {
+  const esPagoConTarjeta = selectMetodoPago.value === 'Tarjeta';
+  camposTarjeta.hidden = !esPagoConTarjeta;
+
+  if (!esPagoConTarjeta) {
+    inputNumeroTarjeta.value = '';
+    inputVencimientoTarjeta.value = '';
+    inputCvvTarjeta.value = '';
+  }
+}
+
+// solo números en los campos de tarjeta
+function permitirSoloNumeros(evento) {
+  evento.target.value = evento.target.value.replace(/\D/g, '');
+}
+
 function guardarPedidoEnHistorial(pedido) {
   const historialGuardado = localStorage.getItem('historialPedidos');
   const historial = historialGuardado ? JSON.parse(historialGuardado) : [];
@@ -182,13 +222,14 @@ function guardarPedidoEnHistorial(pedido) {
   localStorage.setItem('historialPedidos', JSON.stringify(historial));
 }
 
-// Valida el carrito y el formulario; si está todo bien, pide confirmación
+// valida carrito y form, y pide confirmación antes de finalizar
 function confirmarPedido() {
   if (carrito.length === 0) {
     Swal.fire({
       icon: 'warning',
       title: 'Carrito vacío',
-      text: 'Agregá al menos un plato antes de confirmar el pedido.'
+      text: 'Agregá al menos un plato antes de confirmar el pedido.',
+      ...estilosSwal
     });
     return;
   }
@@ -200,7 +241,8 @@ function confirmarPedido() {
     Swal.fire({
       icon: 'warning',
       title: 'Faltan datos',
-      text: `Completá los siguientes campos: ${camposFaltantes.join(', ')}.`
+      text: `Completá los siguientes campos: ${camposFaltantes.join(', ')}.`,
+      ...estilosSwal
     });
     return;
   }
@@ -215,7 +257,8 @@ function confirmarPedido() {
     html: `${detalleItems}<br><br>Total: <strong>${formatearPrecio(calcularTotal())}</strong>`,
     showCancelButton: true,
     confirmButtonText: 'Confirmar',
-    cancelButtonText: 'Cancelar'
+    cancelButtonText: 'Cancelar',
+    ...estilosSwal
   }).then((resultado) => {
     if (resultado.isConfirmed) {
       finalizarPedido();
@@ -223,7 +266,7 @@ function confirmarPedido() {
   });
 }
 
-// Guarda el pedido en el historial, vacía el carrito y muestra el tracking
+// guarda en historial, vacía carrito y arranca el tracking
 function finalizarPedido() {
   const numeroPedido = generarNumeroPedido();
 
@@ -242,6 +285,7 @@ function finalizarPedido() {
   carrito = [];
   renderizarCarrito();
   formDatosCliente.reset();
+  actualizarCamposTarjeta();
 
   filtrosCategoria.hidden = true;
   contenidoPrincipal.hidden = true;
@@ -251,17 +295,15 @@ function finalizarPedido() {
   iniciarTracking(numeroPedido);
 }
 
-// Genera un número de pedido aleatorio de 4 dígitos (ej: 4821)
 function generarNumeroPedido() {
   return Math.floor(1000 + Math.random() * 9000);
 }
 
-// Quita la clase "activo" de los 4 pasos del tracking
 function reiniciarPasosTracking() {
   pasosTracking.forEach((paso) => paso.classList.remove('activo'));
 }
 
-// Activa el paso indicado y, con setTimeout, encadena el siguiente paso
+// avanza el tracking paso a paso, simulando el progreso del pedido
 function avanzarTracking(indice, numeroPedido) {
   if (indice >= pasosTracking.length) return;
 
@@ -277,24 +319,22 @@ function avanzarTracking(indice, numeroPedido) {
   setTimeout(() => avanzarTracking(indice + 1, numeroPedido), 2500);
 }
 
-// Arranca la simulación de estados del pedido desde el primer paso
 function iniciarTracking(numeroPedido) {
   reiniciarPasosTracking();
   avanzarTracking(0, numeroPedido);
 }
 
-// Muestra el SweetAlert final de éxito y habilita "Hacer otro pedido"
 function mostrarPedidoEntregado(numeroPedido) {
   Swal.fire({
     icon: 'success',
     title: '¡Pedido entregado!',
-    text: `Gracias por tu compra. Tu número de pedido es #${numeroPedido}.`
+    text: `Gracias por tu compra. Tu número de pedido es #${numeroPedido}.`,
+    ...estilosSwal
   }).then(() => {
     botonNuevoPedido.hidden = false;
   });
 }
 
-// Vuelve a mostrar el menú y el carrito, y oculta el tracking
 function reiniciarPedido() {
   trackingContainer.hidden = true;
   reiniciarPasosTracking();
@@ -303,13 +343,14 @@ function reiniciarPedido() {
   carritoContainer.hidden = false;
 }
 
-// Activa el listener del botón "Confirmar pedido" y evita el submit del form
 function configurarCheckout() {
   botonConfirmarPedido.addEventListener('click', confirmarPedido);
   formDatosCliente.addEventListener('submit', (evento) => evento.preventDefault());
+
+  selectMetodoPago.addEventListener('change', actualizarCamposTarjeta);
+  inputsSoloNumeros.forEach((input) => input.addEventListener('input', permitirSoloNumeros));
 }
 
-// Activa el listener del botón "Hacer otro pedido"
 function configurarTracking() {
   botonNuevoPedido.addEventListener('click', reiniciarPedido);
 }

@@ -1,24 +1,18 @@
-// historial.js
-// Página "Historial de Pedidos": muestra los pedidos guardados en localStorage
-// por comun.js cada vez que se confirma un pedido en "Todo" o "Restaurantes".
-
-// Referencias a elementos del DOM que se usan en este archivo
+// historial.js - pedidos guardados en localStorage
 const historialContainer = document.getElementById('historial-container');
 const historialMensajeVacio = document.getElementById('historial-mensaje-vacio');
 const botonVaciarHistorial = document.getElementById('btn-vaciar-historial');
 
-// Da formato de precio en pesos a un número (ej: 3500 -> $3.500)
 function formatearPrecio(precio) {
   return `$${precio.toLocaleString('es-AR')}`;
 }
 
-// Lee el historial de pedidos guardado en localStorage (o un array vacío si no hay)
 function obtenerHistorial() {
   const historialGuardado = localStorage.getItem('historialPedidos');
   return historialGuardado ? JSON.parse(historialGuardado) : [];
 }
 
-// Renderiza las tarjetas de pedidos pasados (o el mensaje de "vacío")
+
 function renderizarHistorial() {
   const historial = obtenerHistorial();
   const hayPedidos = historial.length > 0;
@@ -53,7 +47,6 @@ function renderizarHistorial() {
     .join('');
 }
 
-// Pide confirmación y, si se acepta, borra todo el historial guardado
 function vaciarHistorial() {
   Swal.fire({
     icon: 'warning',
@@ -61,7 +54,16 @@ function vaciarHistorial() {
     text: 'Se van a borrar todos los pedidos guardados.',
     showCancelButton: true,
     confirmButtonText: 'Sí, vaciar',
-    cancelButtonText: 'Cancelar'
+    cancelButtonText: 'Cancelar',
+    customClass: {
+      popup: 'swal-popup-app',
+      title: 'swal-titulo-app',
+      htmlContainer: 'swal-texto-app',
+      confirmButton: 'swal-confirmar-app',
+      cancelButton: 'swal-cancelar-app',
+      icon: 'swal-icono-app'
+    },
+    buttonsStyling: false
   }).then((resultado) => {
     if (resultado.isConfirmed) {
       localStorage.removeItem('historialPedidos');
@@ -70,12 +72,10 @@ function vaciarHistorial() {
   });
 }
 
-// Activa el listener del botón "Vaciar historial"
 function configurarHistorial() {
   botonVaciarHistorial.addEventListener('click', vaciarHistorial);
 }
 
-// Punto de entrada: el script está al final del body, así que el HTML ya
-// está completamente cargado en el momento en que se ejecuta este código
+
 renderizarHistorial();
 configurarHistorial();
